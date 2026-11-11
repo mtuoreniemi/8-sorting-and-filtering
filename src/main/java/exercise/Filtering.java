@@ -15,8 +15,8 @@ public class Filtering {
      * @return a new list of posts that does not contain deleted posts
      */
     public static List<Post> filterOutDeletedPosts(List<Post> posts) {
-        // TODO: Implement filtering logic here.
-        return posts;
+        
+        return posts.stream().filter((post) -> post.deletedAt() == null).toList();
     }
 
     /**
@@ -28,6 +28,6 @@ public class Filtering {
      * @return a new list of posts that only contains posts written by the user
      */
     public static List<Post> filterPostsByUser(User user, List<Post> posts) {
-        return posts.subList(0, 10); // TODO: Implement manual filtering logic here.
+        return posts.stream().filter((post) -> post.userId() == user.id()).toList();
     }
 }
