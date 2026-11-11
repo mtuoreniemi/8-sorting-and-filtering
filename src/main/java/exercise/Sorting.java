@@ -1,5 +1,6 @@
 package exercise;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Post;
@@ -26,7 +27,19 @@ public class Sorting {
          * alphabetical ordering of the string values. You can also convert the string
          * values to other data types, for example, to objects in the java.time package.
          */
-        return posts; // TODO: return a new list with the posts sorted
+        List<Post> sortedPost = new ArrayList<>(posts);
+            for (int j = 0; j < sortedPost.size() -1; j++) {
+                
+                for (int i = 1; i < sortedPost.size(); i++) {
+                    if (sortedPost.get(i).publishedAt().compareTo(sortedPost.get(i-1).publishedAt()) < 0)  {
+                        Post temp = sortedPost.get(i);
+                        sortedPost.set(i, sortedPost.get(i -1));
+                        sortedPost.set(i-1, temp);
+                    }
+                }
+            }
+                
+        return sortedPost;
     }
 
     /**
